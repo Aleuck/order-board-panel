@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+@keyframes progress-scale {
+	from {
+		transform: scaleX(0);
+	}
+	to {
+		transform: scaleX(1);
+	}
+}
+
+@keyframes progress-color {
+	0% {
+		background-color: oklch(53.747% 0.18091 142.837);
+	}
+	70% {
+		background-color: oklch(73.893% 0.16289 66.109);
+	}
+	100% {
+		background-color: oklch(54.497% 0.20428 30.899);
+	}
+}
+
+.progress-fill {
+	background-color: oklch(0.78 0.15 145);
+	transform-origin: left;
+	animation-name: progress-scale, progress-color;
+	animation-timing-function: linear;
+	animation-fill-mode: forwards;
+}

@@ -1,0 +1,39 @@
+{
+	"recipes": [
+		{
+			"id": "r1",
+			"name": "Sopa de Tomate",
+			"ingredients": ["Tomate", "Tomate", "Tomate", "queijo"],
+			"cookType": "Cozinhar",
+			"timeToComplete": "20s",
+			"pointsCompleted": 30,
+			"pointsExpired": -15
+		},
+		{
+			"id": "r2",
+			"name": "Cenoura Picada",
+			"ingredients": ["Cenoura"],
+			"cookType": "Cortar",
+			"timeToComplete": "10s",
+			"pointsCompleted": 10,
+			"pointsExpired": -5
+		},
+		{
+			"id": "r3",
+			"name": "Cenoura Picada",
+			"ingredients": ["Cenoura"],
+			"cookType": "Cortar",
+			"timeToComplete": "10s",
+			"pointsCompleted": 10,
+			"pointsExpired": -5
+		}
+	],
+	"sequence": [
+		["0s", "r1"],
+		["10s", "r2"],
+		["20s", "r3"],
+		["25s", "r2"],
+		["30s", "r1"],
+		["40s", "r3"]
+	]
+}
