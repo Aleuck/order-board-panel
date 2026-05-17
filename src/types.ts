@@ -2,7 +2,6 @@ import type { StringValue } from "ms";
 import ms from "ms";
 import z from "zod";
 
-export type Ingredient = string;
 export type CookType = string;
 
 const MsStringSchema: z.ZodType<StringValue> = z
@@ -19,11 +18,27 @@ const MsStringSchema: z.ZodType<StringValue> = z
 	)
 	.transform((value) => value as StringValue);
 
+export const IngredientSchema = z.enum([
+	"Pão",
+	"Carne",
+	"Queijo",
+	"Alface",
+	"Tomate",
+]);
+export type Ingredient = z.infer<typeof IngredientSchema>;
+
+export const ProcessSchema = z.enum(["cortar", "fritar"]);
+export type Process = z.infer<typeof ProcessSchema>;
+
+export const IngredientProcessSchema = z.object({
+	ingredient: IngredientSchema,
+	process: z.array(ProcessSchema).min(0).optional(),
+});
+
 export const RecipeSchema = z.object({
 	id: z.string().min(1),
 	name: z.string().min(1),
-	ingredients: z.array(z.string().min(1)).min(1).max(5),
-	cookType: z.string().min(1),
+	ingredients: z.array(IngredientProcessSchema).min(1).max(5),
 	timeToComplete: MsStringSchema,
 	pointsCompleted: z.number().min(0),
 	pointsExpired: z.number().max(0),

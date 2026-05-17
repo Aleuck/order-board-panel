@@ -1,39 +1,123 @@
 {
 	"recipes": [
 		{
-			"id": "r1",
-			"name": "Sopa de Tomate",
-			"ingredients": ["Tomate", "Tomate", "Tomate", "queijo"],
-			"cookType": "Cozinhar",
-			"timeToComplete": "20s",
-			"pointsCompleted": 30,
+			"id": "salada-1",
+			"name": "Salada I",
+			"ingredients": [
+				{
+					"ingredient": "Alface",
+					"process": ["cortar"]
+				}
+			],
+			"timeToComplete": "90s",
+			"pointsCompleted": 10,
+			"pointsExpired": -5
+		},
+		{
+			"id": "salada-2",
+			"name": "Salada II",
+			"ingredients": [
+				{
+					"ingredient": "Alface",
+					"process": ["cortar"]
+				},
+				{
+					"ingredient": "Tomate",
+					"process": ["cortar"]
+				}
+			],
+			"timeToComplete": "90s",
+			"pointsCompleted": 15,
+			"pointsExpired": -10
+		},
+		{
+			"id": "hamburguer-1",
+			"name": "Hamburguer I",
+			"ingredients": [
+				{
+					"ingredient": "Carne",
+					"process": ["cortar", "fritar"]
+				},
+				{
+					"ingredient": "Pão"
+				}
+			],
+			"timeToComplete": "90s",
+			"pointsCompleted": 10,
+			"pointsExpired": -5
+		},
+		{
+			"id": "hamburguer-2",
+			"name": "Hamburguer II",
+			"ingredients": [
+				{
+					"ingredient": "Carne",
+					"process": ["cortar", "fritar"]
+				},
+				{
+					"ingredient": "Queijo",
+					"process": ["cortar"]
+				},
+				{
+					"ingredient": "Pão"
+				}
+			],
+			"timeToComplete": "105s",
+			"pointsCompleted": 15,
+			"pointsExpired": -10
+		},
+		{
+			"id": "hamburguer-3",
+			"name": "Hamburguer III",
+			"ingredients": [
+				{
+					"ingredient": "Carne",
+					"process": ["cortar", "fritar"]
+				},
+				{
+					"ingredient": "Queijo",
+					"process": ["cortar"]
+				},
+				{
+					"ingredient": "Alface",
+					"process": ["cortar"]
+				},
+				{
+					"ingredient": "Pão"
+				}
+			],
+			"timeToComplete": "120s",
+			"pointsCompleted": 20,
 			"pointsExpired": -15
 		},
 		{
-			"id": "r2",
-			"name": "Cenoura Picada",
-			"ingredients": ["Cenoura"],
-			"cookType": "Cortar",
-			"timeToComplete": "10s",
-			"pointsCompleted": 10,
-			"pointsExpired": -5
-		},
-		{
-			"id": "r3",
-			"name": "Cenoura Picada",
-			"ingredients": ["Cenoura"],
-			"cookType": "Cortar",
-			"timeToComplete": "10s",
-			"pointsCompleted": 10,
-			"pointsExpired": -5
+			"id": "hamburguer-4",
+			"name": "Hamburguer IV",
+			"ingredients": [
+				{
+					"ingredient": "Carne",
+					"process": ["cortar", "fritar"]
+				},
+				{
+					"ingredient": "Queijo",
+					"process": ["cortar"]
+				},
+				{
+					"ingredient": "Alface",
+					"process": ["cortar"]
+				},
+				{
+					"ingredient": "Tomate",
+					"process": ["cortar"]
+				},
+				{
+					"ingredient": "Pão"
+				}
+			],
+			"timeToComplete": "135s",
+			"pointsCompleted": 25,
+			"pointsExpired": -20
 		}
 	],
-	"sequence": [
-		["0s", "r1"],
-		["10s", "r2"],
-		["20s", "r3"],
-		["25s", "r2"],
-		["30s", "r1"],
-		["40s", "r3"]
-	]
+	"sequence": [["0s", "hamburguer-1"], ["45s", "hamburguer-2"]]
 }
