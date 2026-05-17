@@ -119,5 +119,12 @@
 			"pointsExpired": -20
 		}
 	],
-	"sequence": [["0s", "hamburguer-1"], ["45s", "hamburguer-2"]]
+	"sequence": [
+		["0s", "hamburguer-1"],
+		["45s", "hamburguer-2"],
+		["90s", "salada-1"],
+		["135s", "hamburguer-3"],
+		["180s", "salada-2"],
+		["225s", "hamburguer-4"]
+	]
 }

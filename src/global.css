@@ -21,10 +21,14 @@
 	}
 }
 
-.progress-fill {
+@utility progress-fill {
 	background-color: oklch(0.78 0.15 145);
 	transform-origin: left;
 	animation-name: progress-scale, progress-color;
 	animation-timing-function: linear;
 	animation-fill-mode: forwards;
+}
+
+body {
+	@apply bg-gray-400 text-gray-950;
 }
