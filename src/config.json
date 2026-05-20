@@ -1,8 +1,16 @@
 {
+	"sequence": [
+		["0s", "hamburguer-1"],
+		["45s", "hamburguer-2"],
+		["90s", "salada-1"],
+		["135s", "hamburguer-3"],
+		["180s", "salada-2"],
+		["225s", "hamburguer-4"]
+	],
 	"recipes": [
 		{
 			"id": "salada-1",
-			"name": "Salada I",
+			"name": "S1",
 			"ingredients": [
 				{
 					"ingredient": "Alface",
@@ -15,7 +23,7 @@
 		},
 		{
 			"id": "salada-2",
-			"name": "Salada II",
+			"name": "S2",
 			"ingredients": [
 				{
 					"ingredient": "Alface",
@@ -32,7 +40,7 @@
 		},
 		{
 			"id": "hamburguer-1",
-			"name": "Hamburguer I",
+			"name": "L1",
 			"ingredients": [
 				{
 					"ingredient": "Carne",
@@ -48,7 +56,7 @@
 		},
 		{
 			"id": "hamburguer-2",
-			"name": "Hamburguer II",
+			"name": "L2",
 			"ingredients": [
 				{
 					"ingredient": "Carne",
@@ -68,7 +76,7 @@
 		},
 		{
 			"id": "hamburguer-3",
-			"name": "Hamburguer III",
+			"name": "L3",
 			"ingredients": [
 				{
 					"ingredient": "Carne",
@@ -92,7 +100,7 @@
 		},
 		{
 			"id": "hamburguer-4",
-			"name": "Hamburguer IV",
+			"name": "L4",
 			"ingredients": [
 				{
 					"ingredient": "Carne",
@@ -118,13 +126,5 @@
 			"pointsCompleted": 25,
 			"pointsExpired": -20
 		}
-	],
-	"sequence": [
-		["0s", "hamburguer-1"],
-		["45s", "hamburguer-2"],
-		["90s", "salada-1"],
-		["135s", "hamburguer-3"],
-		["180s", "salada-2"],
-		["225s", "hamburguer-4"]
 	]
 }

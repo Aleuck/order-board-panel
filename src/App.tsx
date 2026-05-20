@@ -124,6 +124,7 @@ const ProgressBar = ({
 type GameState = {
 	orders: Order[];
 	points: number;
+	maxPossiblePoints: number;
 };
 
 type GameAction =
@@ -152,7 +153,7 @@ const OrderCard = ({
 				onClick={onClick}
 				className={clsx(
 					"overflow-hidden rounded block w-full",
-					"grid grid-rows-[2rem_8rem] items-center",
+					"grid grid-rows-[2rem_10rem] items-center",
 					order.status === "pending" &&
 						"hover:outline-4 hover:outline-green-800 focus:outline-4 focus:outline-green-800",
 					order.status !== "pending" && "pointer-events-none",
@@ -185,7 +186,7 @@ const OrderCard = ({
 					{order.recipe.ingredients.map(({ ingredient, process }, index) => (
 						<div
 							key={`${index}_${ingredient}`}
-							className="flex flex-col items-center justify-start w-14 bg-gray-200 rounded-b-lg p-1 gap-1"
+							className="flex flex-col items-center justify-start w-16 bg-gray-200 rounded-b-lg p-1 gap-1"
 						>
 							<IngredientImage ingredient={ingredient} />
 							<div className="flex flex-col gap-1">
@@ -233,6 +234,8 @@ function gameReducer(state: GameState, action: GameAction): GameState {
 			return {
 				...state,
 				points: state.points + pointsDelta,
+				maxPossiblePoints:
+					state.maxPossiblePoints + order.recipe.pointsCompleted,
 				orders: [
 					...state.orders.slice(0, orderIndex),
 					order,
@@ -247,6 +250,8 @@ function gameReducer(state: GameState, action: GameAction): GameState {
 			return {
 				...state,
 				points: state.points + order.recipe.pointsExpired,
+				maxPossiblePoints:
+					state.maxPossiblePoints + order.recipe.pointsCompleted,
 				orders: [
 					...state.orders.slice(0, orderIndex),
 					order,
@@ -257,6 +262,32 @@ function gameReducer(state: GameState, action: GameAction): GameState {
 		default:
 			return state;
 	}
+}
+
+function Stars({
+	points,
+	maxPossiblePoints,
+}: {
+	points: number;
+	maxPossiblePoints: number;
+}) {
+	const percentage = maxPossiblePoints === 0 ? 0 : points / maxPossiblePoints;
+	const stars = Math.round(percentage * 3);
+	return (
+		<span className="inline-flex gap-1">
+			{[1, 2, 3].map((i) => (
+				<span
+					key={i}
+					className={clsx(
+						"text-2xl",
+						i <= stars ? "text-yellow-400" : "text-gray-400",
+					)}
+				>
+					★
+				</span>
+			))}
+		</span>
+	);
 }
 
 function OrdersBoard({
@@ -279,6 +310,7 @@ function OrdersBoard({
 	const [gameState, dispatch] = useReducer(gameReducer, {
 		orders: [],
 		points: 0,
+		maxPossiblePoints: 0,
 	});
 
 	function expireOrder(id: string) {
@@ -331,7 +363,7 @@ function OrdersBoard({
 			<div className="flex gap-2 p-2">
 				<button
 					type="button"
-					className="p-2 bg-blue-900 text-white rounded"
+					className="px-2 py-1 bg-blue-900 text-white rounded"
 					onClick={() => {
 						sequence.forEach(([time, recipeId]) => {
 							setTimeout(() => {
@@ -341,21 +373,30 @@ function OrdersBoard({
 						});
 					}}
 				>
-					Iniciar Sequência
+					Iniciar
 				</button>
 				{Array.from(recipes.entries()).map(([id, recipe]) => (
 					<button
 						key={id}
 						type="button"
-						className="p-2 bg-green-900 text-white rounded"
+						className={clsx(
+							"px-2 py-1 bg-green-900 text-white rounded",
+							id[0] === "h" && "bg-yellow-900",
+						)}
 						onClick={() => addOrder(recipe)}
 					>
-						Pedir {recipe.name}
+						{recipe.name}
 					</button>
 				))}
 			</div>
-			<div className="p-2 text-2xl font-bold">Pontos: {gameState.points}</div>
-			<div className="p-2 flex gap-x-2 gap-y-20 flex-wrap h-44">
+			<div className="p-2 text-2xl font-bold flex gap-2">
+				<span>Pontos: {gameState.points}</span>
+				<Stars
+					points={gameState.points}
+					maxPossiblePoints={gameState.maxPossiblePoints}
+				/>
+			</div>
+			<div className="p-2 flex gap-x-2 gap-y-48 flex-wrap h-44">
 				{gameState.orders.map((order) => (
 					<OrderCard
 						key={order.id}
